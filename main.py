@@ -6,13 +6,22 @@ import numpy as np
 from keras.optimizers import Adam
 from keras.models import Model
 import tensorflow as tf
-
+import dataprocess
 
 batch_size =64
 epochs = 20
-
+num_classes = 
+length = 5120
+number = 1000# 每类样本的数量
+normal = True # 是否标准化
+rate = [0.7,0.2,0.1] # 测试集验证集划分比例
 
 #读取数据......
+path = r""
+path_test = r""
+
+x_train, y_train, x_valid, y_valid, x_test, y_test = datapreprocess.prepro(d_path=path,length=length,number=number,normal=normal,rate=rate,enc=True, enc_step=28)
+x_train1, y_train1, x_valid1, y_valid1, x_test1, y_test1 = datapreprocess.prepro(d_path=path,length=length,number=number,normal=normal,rate=rate,enc=True, enc_step=28)
 
 input_shape =x_train.shape[1:]
 
@@ -43,6 +52,11 @@ model.load_weights('MSiT.hdf5')
 loss, bin_accuracy = model.evaluate(x_test, y_test)
 print("loss:", loss)
 print("accuracy", bin_accuracy)
+
+#跨个体评估
+loss1, bin_accuracy1 = model.evaluate(x_test1, y_test1)
+print("loss:", loss1)
+print("accuracy", bin_accuracy1)
 
 
 
