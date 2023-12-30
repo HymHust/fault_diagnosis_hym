@@ -23,6 +23,8 @@ path_test = r""
 x_train, y_train, x_valid, y_valid, x_test, y_test = datapreprocess.prepro(d_path=path,length=length,number=number,normal=normal,rate=rate,enc=True, enc_step=28)
 x_train1, y_train1, x_valid1, y_valid1, x_test1, y_test1 = datapreprocess.prepro(d_path=path,length=length,number=number,normal=normal,rate=rate,enc=True, enc_step=28)
 
+x_train, x_valid, x_test = x_train[:, :, :,  np.newaxis], x_valid[:, :, :, np.newaxis], x_test[:, :, :, np.newaxis]
+x_train1, x_valid1, x_test1 = x_train1[:, :, :,  np.newaxis], x_valid1[:, :, :, np.newaxis], x_test1[:, :, :, np.newaxis]
 input_shape =x_train.shape[1:]
 
 print('训练样本维度:', x_train.shape)
